@@ -1,4 +1,15 @@
-export default function PlayerCard() {
+import React from 'react';
+import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import { Button } from 'react-bootstrap';
+import { deleteSinglePlayer } from '../api/playerData';
+
+export default function PlayerCard({ playerObj, onUpdate }) {
+  const deleteThisPlayer = () => {
+    if (window.confirm(`Delete ${playerObj.name}?`)) {
+      deleteSinglePlayer(playerObj.firebaseKey).then(() => onUpdate());
+    }
+  };
   return (
     <>
       <div id="card">
@@ -9,32 +20,32 @@ export default function PlayerCard() {
         </svg>
         <div id="card-inner">
           <div id="card-top">
-
             <div className="info">
-              <div className="value">94</div>
-              <div className="position">st</div>
-              <div className="country"><div /></div>
-              <div className="club"><div /></div>
+              <Button type="button" variant="danger" onClick={deleteThisPlayer}> X </Button>
+              <div className="value">{playerObj.rating}</div>
+              <div className="position">{playerObj.position}</div>
+              <Card.Img className="country" src={playerObj.country} />
+              <Card.Img className="club" src={playerObj.club} />
             </div>
 
-            <div className="image" />
+            <Card.Img className="image" src={playerObj.image} />
             <div className="backfont">FUT19</div>
           </div>
           <div id="card-bottom">
-            <div className="name">ronaldo</div>
+            <div className="name">{playerObj.name}</div>
             <div className="stats">
               <div>
                 <ul>
-                  <li><span>89</span><span>pac</span></li>
-                  <li><span>94</span><span>sho</span></li>
-                  <li><span>81</span><span>pas</span></li>
+                  <li><span>{playerObj.pac}</span><span>pac</span></li>
+                  <li><span>{playerObj.sho}</span><span>sho</span></li>
+                  <li><span>{playerObj.pas}</span><span>pas</span></li>
                 </ul>
               </div>
               <div>
                 <ul>
-                  <li><span>90</span><span>dri</span></li>
-                  <li><span>33</span><span>def</span></li>
-                  <li><span>83</span><span>phy</span></li>
+                  <li><span>{playerObj.dri}</span><span>dri</span></li>
+                  <li><span>{playerObj.def}</span><span>def</span></li>
+                  <li><span>{playerObj.phy}</span><span>phy</span></li>
                 </ul>
               </div>
 
@@ -44,7 +55,32 @@ export default function PlayerCard() {
 
         </div>
       </div>
-
+      {/* <Link href={`/author/${authorObj.firebaseKey}`} passHref>
+          <Button variant="primary" className="m-2">VIEW</Button>
+        </Link>
+        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
+      {/* <Link href={`/author/edit/${authorObj.firebaseKey}`} passHref>
+          <Button variant="info">EDIT</Button>
+        </Link> */}
     </>
   );
 }
+
+PlayerCard.propTypes = {
+  playerObj: PropTypes.shape({
+    name: PropTypes.string,
+    country: PropTypes.string,
+    club: PropTypes.string,
+    firebaseKey: PropTypes.string,
+    image: PropTypes.string,
+    pac: PropTypes.number,
+    pas: PropTypes.number,
+    phy: PropTypes.number,
+    sho: PropTypes.number,
+    dri: PropTypes.number,
+    def: PropTypes.number,
+    position: PropTypes.string,
+    rating: PropTypes.number,
+  }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+};

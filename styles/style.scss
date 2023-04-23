@@ -2,9 +2,6 @@ $color1: #e1c072;
 $color2: #fdeaa7;
 $color3: #725b16;
 
-$player-image: 'https://wallpapers.com/images/hd/fifa-background-m4k21i5gav7czzao.jpg';
-$country-image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/214624/portugal.png';
-$club-image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/214624/Juventus_Logo.png';
 
 body {
 	position: relative;
@@ -95,7 +92,6 @@ a {
 				z-index: 2;
 				height: 75%;
 				width: 70%;
-				background-image:url($player-image);
 				background-position: bottom center;
 				background-repeat: no-repeat;
 				background-size: contain;
@@ -137,7 +133,7 @@ a {
 					&.country {
 						padding-bottom: 5px;
 						font-weight: 700;
-						margin-bottom: 5px;
+						margin-bottom: 20px;
 						border-bottom: 2px solid transparentize($color2, 0.1);
 					}
 					&.country,
@@ -153,7 +149,6 @@ a {
 							width: 100%;
 							background-position: center;
 							background-size: cover;
-							background-image:url($country-image);
 						}
 						&.club {
 							height: 60px;
@@ -161,7 +156,6 @@ a {
 								background-size: contain;
 								background-position: top center;
 								background-repeat: no-repeat;
-								background-image:url($club-image);
 							}
 						}
 					}
