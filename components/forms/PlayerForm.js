@@ -11,6 +11,7 @@ const initialState = {
   club: '',
   image: '',
   country: '',
+  rating: '',
 };
 
 function PlayerForm({ obj }) {
@@ -36,7 +37,7 @@ function PlayerForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updatePlayer(formInput)
-        .then(() => router.push(`/players/${obj.firebaseKey}`));
+        .then(() => router.push('/team'));
     } else {
       const payload = {
         ...formInput,
@@ -136,6 +137,7 @@ PlayerForm.propTypes = {
     image: PropTypes.string,
     country: PropTypes.string,
     club: PropTypes.string,
+    rating: PropTypes.number,
     firebaseKey: PropTypes.string,
   }),
 };

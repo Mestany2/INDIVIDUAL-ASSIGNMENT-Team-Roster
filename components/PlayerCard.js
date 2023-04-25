@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { Button } from 'react-bootstrap';
+import Link from 'next/link';
 import { deleteSinglePlayer } from '../api/playerData';
 
 export default function PlayerCard({ playerObj, onUpdate }) {
@@ -10,6 +11,9 @@ export default function PlayerCard({ playerObj, onUpdate }) {
       deleteSinglePlayer(playerObj.firebaseKey).then(() => onUpdate());
     }
   };
+
+  const [showInfo, setShowInfo] = useState(false);
+  const onClick = () => setShowInfo(true);
   return (
     <>
       <div id="card">
@@ -21,7 +25,12 @@ export default function PlayerCard({ playerObj, onUpdate }) {
         <div id="card-inner">
           <div id="card-top">
             <div className="info">
-              <Button type="button" variant="danger" onClick={deleteThisPlayer}> X </Button>
+              <div className="card-btns">
+                <Button type="button" variant="danger" onClick={deleteThisPlayer}> X </Button>
+                <Link href={`/${playerObj.firebaseKey}`} passHref>
+                  <Button type="button"> E </Button>
+                </Link>
+              </div>
               <div className="value">{playerObj.rating}</div>
               <div className="position">{playerObj.position}</div>
               <Card.Img className="country" src={playerObj.country} />
@@ -29,27 +38,30 @@ export default function PlayerCard({ playerObj, onUpdate }) {
             </div>
 
             <Card.Img className="image" src={playerObj.image} />
-            <div className="backfont">FUT19</div>
+            <div className="backfont">FUT23</div>
           </div>
           <div id="card-bottom">
-            <div className="name">{playerObj.name}</div>
-            <div className="stats">
-              <div>
-                <ul>
-                  <li><span>{playerObj.pac}</span><span>pac</span></li>
-                  <li><span>{playerObj.sho}</span><span>sho</span></li>
-                  <li><span>{playerObj.pas}</span><span>pas</span></li>
-                </ul>
-              </div>
-              <div>
-                <ul>
-                  <li><span>{playerObj.dri}</span><span>dri</span></li>
-                  <li><span>{playerObj.def}</span><span>def</span></li>
-                  <li><span>{playerObj.phy}</span><span>phy</span></li>
-                </ul>
-              </div>
-
+            <div className="text-center">
+              <button type="button" className="name" onClick={onClick}>{playerObj.name}</button>
             </div>
+            {showInfo ? (
+              <div className="stats">
+                <div>
+                  <ul>
+                    <li><span>{playerObj.pac}</span><span>pac</span></li>
+                    <li><span>{playerObj.sho}</span><span>sho</span></li>
+                    <li><span>{playerObj.pas}</span><span>pas</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li><span>{playerObj.dri}</span><span>dri</span></li>
+                    <li><span>{playerObj.def}</span><span>def</span></li>
+                    <li><span>{playerObj.phy}</span><span>phy</span></li>
+                  </ul>
+                </div>
+              </div>
+            ) : <div /> }
 
           </div>
 
