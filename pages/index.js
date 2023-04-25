@@ -1,5 +1,5 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+import Link from 'next/link';
+import { Nav } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -13,13 +13,14 @@ function Home() {
         padding: '30px',
         maxWidth: '400px',
         margin: '0 auto',
+        color: 'white',
       }}
     >
       <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+      <h1>Welcome to FIFA 23 Ultimate Team</h1>
+      <Link passHref href="/team">
+        <Nav.Link>View My Team</Nav.Link>
+      </Link>
     </div>
   );
 }
