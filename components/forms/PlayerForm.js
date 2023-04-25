@@ -11,7 +11,6 @@ const initialState = {
   club: '',
   image: '',
   country: '',
-  rating: '',
 };
 
 function PlayerForm({ obj }) {
