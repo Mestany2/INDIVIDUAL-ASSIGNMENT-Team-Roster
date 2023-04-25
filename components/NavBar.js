@@ -25,7 +25,7 @@ export default function NavBar() {
                 </li>
               </Link>
               {/* Change it to the correct route */}
-              <Link passHref href="/team">
+              <Link passHref href="/new">
                 <li className="main">
                   <span>Add A Player</span>
                 </li>

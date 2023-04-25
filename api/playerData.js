@@ -39,8 +39,31 @@ const updatePlayer = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const createPlayer = (payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/players.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const setcode = { firebaseKey: data.name };
+      fetch(`${dbUrl}/players/${setcode.firebaseKey}.json`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(setcode),
+      }).then(resolve);
+    })
+    .catch(reject);
+});
+
 export {
   getPlayers,
   updatePlayer,
   deleteSinglePlayer,
+  createPlayer,
 };
