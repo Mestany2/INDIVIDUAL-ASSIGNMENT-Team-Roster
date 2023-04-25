@@ -9,13 +9,13 @@ body {
 	width: 100%;
 	  padding: 0;
   margin: 0;
-	background: darken($color1, 30%);
-	background: radial-gradient(ellipse at center,darken($color1, 50%) 0%,darken($color1, 80%));
+	// background: darken($color1, 30%);
+	// background: radial-gradient(ellipse at center,darken($color1, 50%) 0%,darken($color1, 80%));
+	background:url("https://user-images.githubusercontent.com/22690563/67150939-14a0b180-f2c7-11e9-8016-a993a397e1c5.jpg") no-repeat center center / cover;
 	justify-content: center;
 	align-items: center;
 	font-family: "Roboto Condensed", sans-serif;
 }
-
 a {
 	// position: absolute;
 	transition: .5s all cubic-bezier(0.075, 0.82, 0.165, 1);

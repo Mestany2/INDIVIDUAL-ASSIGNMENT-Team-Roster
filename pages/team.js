@@ -16,10 +16,13 @@ export default function ViewTeam() {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap">
-      {players.map((player) => (
-        <PlayerCard key={player.firebaseKey} playerObj={player} onUpdate={getAllPlayers} />
-      ))}
-    </div>
+    <>
+      <h1 className="text-center">Ultimate Team</h1>
+      <div className="d-flex flex-wrap">
+        {players.map((player) => (
+          <PlayerCard key={player.firebaseKey} playerObj={player} onUpdate={getAllPlayers} />
+        ))}
+      </div>
+    </>
   );
 }
