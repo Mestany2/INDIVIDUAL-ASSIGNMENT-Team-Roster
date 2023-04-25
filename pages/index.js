@@ -9,19 +9,14 @@ function Home() {
 
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-        color: 'white',
-      }}
     >
-      <h1>Hello {user.displayName}! </h1>
-      <h1>Welcome to FIFA 23 Ultimate Team</h1>
-      <Link passHref href="/team">
-        <Nav.Link>View My Team</Nav.Link>
-      </Link>
+      <div className="logo"><b>W<span>el</span>co<span>m</span>e</b>
+        <h1>Hello {user.displayName}! </h1>
+        <h1>Welcome to FIFA 23 Ultimate Team</h1>
+        <Link passHref href="/team">
+          <Nav.Link className="sparkles">View My Team</Nav.Link>
+        </Link>
+      </div>
     </div>
 
   );
