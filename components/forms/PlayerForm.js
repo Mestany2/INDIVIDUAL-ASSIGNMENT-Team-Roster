@@ -11,7 +11,7 @@ const initialState = {
   club: '',
   image: '',
   country: '',
-  rating: '',
+  rating: 0,
 };
 
 function PlayerForm({ obj }) {
@@ -83,7 +83,7 @@ function PlayerForm({ obj }) {
 
       <FloatingLabel controlId="floatingInput2" label="Rating" className="mb-3">
         <Form.Control
-          type="text"
+          type="number"
           placeholder="Enter Player's rating"
           name="rating"
           value={formInput.rating}
