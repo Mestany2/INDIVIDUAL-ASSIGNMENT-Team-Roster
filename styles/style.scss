@@ -395,6 +395,7 @@ nav {
     font-weight: 700;
     letter-spacing: 0.5px;
     border-radius: 5em;
+	color:white;
     background: linear-gradient(
         0deg,
         hsla(var(--clr), 100%, 70%) 0%,
@@ -436,6 +437,7 @@ nav {
 .sparkles:before {
     inset: 0;
     position: absolute;
+	color: white;
     transform: translate3d(0, 0, 0.01px);
     border-radius: inherit;
 
