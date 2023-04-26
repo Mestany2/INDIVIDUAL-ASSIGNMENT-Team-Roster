@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import { deleteSinglePlayer } from '../api/playerData';
+import viewPlayerCountry from '../api/mergedData';
 
 export default function PlayerCard({ playerObj, onUpdate }) {
   const deleteThisPlayer = () => {
@@ -13,7 +14,14 @@ export default function PlayerCard({ playerObj, onUpdate }) {
   };
 
   const [showInfo, setShowInfo] = useState(false);
+  const [playerCountry, setPlayerCountry] = useState();
+
+  useEffect(() => {
+    viewPlayerCountry(playerObj.firebaseKey).then(setPlayerCountry);
+  }, []);
+
   const onClick = () => setShowInfo(true);
+
   return (
     <>
       <div id="card">
@@ -33,7 +41,7 @@ export default function PlayerCard({ playerObj, onUpdate }) {
               </div>
               <div className="value">{playerObj.rating}</div>
               <div className="position">{playerObj.position}</div>
-              <Card.Img className="country" src={playerObj.country} />
+              <Card.Img className="country" src={playerCountry?.countryObj?.country_flag} />
               <Card.Img className="club" src={playerObj.club} />
             </div>
 

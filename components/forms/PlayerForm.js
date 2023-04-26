@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { createPlayer, updatePlayer } from '../../api/playerData';
 import { useAuth } from '../../utils/context/authContext';
+import { getCountries } from '../../api/countryData';
 
 const initialState = {
   name: '',
@@ -16,12 +17,15 @@ const initialState = {
 
 function PlayerForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [countries, setCountries] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
+    getCountries().then(setCountries);
+
     if (obj.firebaseKey) setFormInput(obj);
-  }, [obj]);
+  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -92,15 +96,26 @@ function PlayerForm({ obj }) {
         />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput3" label="Country" className="mb-3">
-        <Form.Control
-          type="url"
-          placeholder="Country Flag"
+      <FloatingLabel controlId="floatingInput3" label="country" className="mb-3">
+        <Form.Select
+          aria-label="country"
           name="country"
           value={formInput.country}
           onChange={handleChange}
           required
-        />
+        >
+          <option value="">Select a Country</option>
+          {
+            countries.map((country) => (
+              <option
+                key={country.firebaseKey}
+                value={country.firebaseKey}
+              >
+                {country.country_name}
+              </option>
+            ))
+          }
+        </Form.Select>
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingInput3" label="Club" className="mb-3">
