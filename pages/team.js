@@ -23,6 +23,7 @@ export default function ViewTeam() {
           <PlayerCard key={player.firebaseKey} playerObj={player} onUpdate={getAllPlayers} />
         ))}
       </div>
+      <title>Ultimate Team</title>
     </>
   );
 }

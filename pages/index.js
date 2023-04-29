@@ -17,6 +17,7 @@ function Home() {
           <Nav.Link className="sparkles">View My Team</Nav.Link>
         </Link>
       </div>
+      <title>FUT 2023</title>
     </div>
 
   );

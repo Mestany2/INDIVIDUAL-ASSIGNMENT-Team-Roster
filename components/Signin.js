@@ -18,6 +18,7 @@ function Signin() {
       <Button type="button" size="lg" className="copy-btn sparkles" onClick={signIn}>
         Sign In
       </Button>
+      <title>FUT 23 APP</title>
     </div>
   );
 }
